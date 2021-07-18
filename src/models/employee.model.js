@@ -15,7 +15,7 @@ var Employee = function(employee){
 
 // get all employees
 Employee.getAllEmployees = (result) => {
-    dbConn.query('SELECT * FROM employees', (err,res)=>{
+    dbConn.query('SELECT * FROM employees WHERE is_deleted=0', (err,res)=>{
             if(err) {
                 console.log('Error while fetching employees', err);
                 result(null,err);
@@ -63,9 +63,32 @@ Employee.updateEmployee = (id, employeeReqData,result)=>{
             console.log('Employee updated successfully');
             result(null, res);
         }
-
     });
 }
 
+// delete employee
+ Employee.deleteEmployee = (id, result)=>{
+     //hard delete
+//     dbConn.query('DELETE FROM employees WHERE id=?', [id],(err,res)=>{
+//         if(err){
+//             console.log('Error while deleting the employee');
+//             result(null, err);
+//         }else{
+//             result(null,res);
+//         }
+//     });
+// }
+
+//soft delete
+dbConn.query('UPDATE employees SET is_deleted=? WHERE id=?', [1,id],(err,res)=>{
+    if(err){
+        console.log('Error while updating the employee');
+        result(null,err);
+    }else{
+        console.log('Employee deleted successfully');
+        result(null, res)
+    }
+});
+}
 
 module.exports= Employee;

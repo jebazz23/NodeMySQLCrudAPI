@@ -1,3 +1,4 @@
+const Employee = require('../models/employee.model');
 const EmployeeModel = require('../models/employee.model');
 
 
@@ -60,6 +61,15 @@ updateEmployee = (req, res) => {
 
 }
 
+// delete employee
+deleteEmployee = (req,res) =>{
+    EmployeeModel.deleteEmployee(req.params.id,(err, employee) => {
+        if(err)
+        res.send(err);
+        res.json({success:true, message: 'Employee deleted successfully'});
+    })
+}
+
 
 
 
@@ -72,5 +82,6 @@ module.exports = {
     getEmployeeList: getEmployeeList,
     getEmployeeByID: getEmployeeByID,
     createNewEmployee: createNewEmployee,
-    updateEmployee: updateEmployee
+    updateEmployee: updateEmployee,
+    deleteEmployee: deleteEmployee
 }
