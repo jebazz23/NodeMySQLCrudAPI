@@ -38,8 +38,26 @@ createNewEmployee = (req,res) =>{
                 res.send(err);
                 res.json({status: true, message:'Employee Created Successfully', data: employee.insertId})
             
-        })
+        });
     }
+}
+
+// update employee
+
+updateEmployee = (req, res) => {
+    const employeeReqData = new EmployeeModel(req.body);
+    console.log('employeeReqData update', employeeReqData);
+    // check null
+    if(req.body.constructor === Object && Object.keys(req.body).length === 0){
+        res.send(400).send({success: false, message: 'Please fill al fields'});
+    }else{
+        EmployeeModel.updateEmployee(req.params.id, employeeReqData,(err, employee)=>{
+            if(err)
+            res.send(err);
+            res.json({status: true, message: 'Employee updated Successfully'})
+        });
+    }
+
 }
 
 
@@ -53,5 +71,6 @@ createNewEmployee = (req,res) =>{
 module.exports = {
     getEmployeeList: getEmployeeList,
     getEmployeeByID: getEmployeeByID,
-    createNewEmployee: createNewEmployee
+    createNewEmployee: createNewEmployee,
+    updateEmployee: updateEmployee
 }

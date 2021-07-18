@@ -53,6 +53,19 @@ dbConn.query('INSERT INTO employees SET ?', employeeReqData, (err,res)=>{
 });
 }
 
+// update employee
+Employee.updateEmployee = (id, employeeReqData,result)=>{
+    dbConn.query("UPDATE employees SET first_name=?, last_name=?, email=?, phone=?, organization=?, designation=?, salary=?, status=? WHERE id=?", [employeeReqData.first_name, employeeReqData.last_name, employeeReqData.email, employeeReqData.phone, employeeReqData.organization,employeeReqData.designation,employeeReqData.salary,employeeReqData.status,id],(err, res)=>{
+        if(err){
+            console.log('Error while updated the employee');
+            result(null, err);
+        }else{
+            console.log('Employee updated successfully');
+            result(null, res);
+        }
+
+    });
+}
 
 
 module.exports= Employee;
