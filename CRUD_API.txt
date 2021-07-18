@@ -1,0 +1,24 @@
+CRUD APIs in Node MySQL:
+
+-- NodeJS
+-- Express Framework	
+-- MySQL
+
+Prerequesites and required applications:
+
+-- Node.js
+-- ExpressJS
+-- My SQL
+-- EcmaScript (ES)
+-- Postman
+-- IDE (visual studio code)
+
+Create a Project:
+
+-- Create a project folder and navigate to it
+-- Initialize and Configure Our Project
+-- Install express framework and other dependencies
+-- Create entry point file of Project
+-- Start the web server
+
+And so on...
